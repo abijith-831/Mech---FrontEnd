@@ -71,85 +71,98 @@
     }
 }
 
-.search-container{
-    background-color: rgb(211, 211, 211);
+.search-container {
+    background-color: #fff;
     display: flex;
+    flex-wrap: wrap; 
     justify-content: center;
+    align-items: center;
     margin: 0 auto;
-    max-width: 50%;
-    padding: 30px;
-    gap: 50px;
-    border-radius: 50px;
-    margin-top: -50px;
-    position: relative;
-    cursor: pointer;
+    width: 60%; 
+    padding: 10px 20px;
+    border-radius: 30px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    gap: 20px; 
+    transform: translate(-50%, -50%);
     font-size: smaller;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
-.search-container:hover{
-    box-shadow: 0px 5px 5px rgba(5, 173, 89, 0.4);
-}
-.search-container h1:hover{
-    color: green;
-}
-
-.search-container h1:last-child {
+.icon-input {
     display: flex;
     align-items: center;
-    gap: 28px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px; 
+    max-width: 100%; 
 }
 
-.search-container h1:last-child::after {
-    content: '→';  
-    font-size: 1.5rem;
-    color: #10c027;
+.icon-input i {
+    color: #888;
+    margin-right: 10px;
+    font-size: 18px;
 }
 
-@media (max-width:1200px){
-    .search-container{
-        max-width: 70%;
-        padding: 20px;
-        margin-top: -40px;
+.dropdown,
+.search-input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+    background: transparent;
+}
+
+.icon-input:hover {
+    border-color: green;
+}
+
+.search-container:hover {
+    box-shadow: 0px 5px 10px rgba(5, 173, 89, 0.4);
+}
+
+
+@media (max-width: 1200px) {
+    .search-container {
+        width: 70%;
+        padding: 15px 10px;
     }
-
-    .search-container h1{
-        font-size: 1.1 rem;
-    }
 }
+
 @media (max-width: 768px) {
     .search-container {
-      max-width: 70%;
-      padding: 15px;
-      margin-top: -30px;
+        width: 80%;
+        padding: 10px 15px;
+        flex-wrap: wrap; 
+        gap: 15px;
     }
-  
-    .search-container h1 {
-      font-size: 1rem;
-      text-align: center;
+    .icon-input {
+        width: 250px;
     }
-  
-    .search-container h1:last-child {
-      justify-content: center;
-    }
-
 }
 
 @media (max-width: 480px) {
     .search-container {
-      max-width: 90%;
-      padding: 10px;
-      margin-top: -50px;
+        width: 90%;
+        padding: 10px;
+        gap: 10px; 
     }
-  
-    .search-container h1 {
-      font-size: 0.9rem;
+    .icon-input {
+        width: 100%;
     }
-  
-    .search-container h1:last-child {
-      justify-content: center;
+    .icon-input i {
+        font-size: 16px;
+    }
+    .dropdown,
+    .search-input {
+        font-size: 12px;
     }
 }
+
 
 .pop-services {
     margin: 30px 75px; 

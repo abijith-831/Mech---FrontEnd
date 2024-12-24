@@ -11,7 +11,16 @@ const App:React.FC = () => {
       <Routes>
           <Route path='/*' element={<UserRoutes/>}/>
       </Routes>
-      <ToastContainer/>
+      <ToastContainer
+        position="top-right"      
+        autoClose={2000}         
+        hideProgressBar={false}  
+        newestOnTop={false}       
+        closeOnClick={true}       
+        pauseOnHover={true}      
+        draggable={true}         
+                   
+      />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { useReducer } from 'react';
+
 
 const initialState: UserState={
     currentUser : null,
@@ -11,7 +11,7 @@ const initialState: UserState={
 interface User{
     data : User | null;
     _id : string ; 
-    name : string ; 
+    username : string ; 
     email : string
 }
 
@@ -61,6 +61,12 @@ const userReducer=createSlice({
             state.isAuthenticated=false
 
         },
+        signUpSuccess: (state, action) => {
+            state.currentUser = action.payload;
+            state.loading = false;
+            state.error = false;
+            state.isAuthenticated = true;
+          },
 
 
 
@@ -68,6 +74,10 @@ const userReducer=createSlice({
 })
 
 
-// export const { loginStart,loginFailure,loginSuccess,logout} = useReducer.actions
+export const {loginStart,
+    loginFailure,
+    loginSuccess,
+    logout,
+    signUpSuccess} = userReducer.actions;
 
 export default userReducer.reducer

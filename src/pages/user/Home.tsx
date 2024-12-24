@@ -9,10 +9,34 @@ const Home = () => {
             <h1>Find Your Nearest Workshop with , </h1><br />
           </div>
         </div>
-        <div className='search-container'>
-          <h1>Search Nearest ? </h1>
-          <h1>Select Category</h1>
+        <div className="search-container">
+            {/* Location Section */}
+            <div className="location">
+                <div className="icon-input">
+                    <i className="fas fa-map-marker-alt location-icon"></i>
+                    <select className="dropdown">
+                        <option value="" disabled selected>Select Location</option>
+                        <option value="new-york">New York</option>
+                        <option value="los-angeles">Los Angeles</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="houston">Houston</option>
+                    </select>
+                </div>
+            </div>
+
+            {/* Search Field Section */}
+            <div className="search-field">
+                <div className="icon-input">
+                    <i className="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        placeholder="Search Workshops" 
+                        className="search-input" 
+                    />
+                </div>
+            </div>
         </div>
+
         <h2 className='pop-services'>Popular Services</h2>
         <div className='service-container'>
           
