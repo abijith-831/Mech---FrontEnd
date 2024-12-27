@@ -133,7 +133,7 @@ const Signup: React.FC = () => {
         const userData = response.data.user;
         
         dispatch(signUpSuccess(userData));
-
+ 
         setShowOtpModal(true);
         startResendTimer();
       }

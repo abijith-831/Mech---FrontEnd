@@ -66,7 +66,7 @@ const userReducer=createSlice({
             state.loading = false;
             state.error = false;
             state.isAuthenticated = true;
-          },
+        },
 
 
 

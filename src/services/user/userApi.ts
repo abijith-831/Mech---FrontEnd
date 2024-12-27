@@ -3,7 +3,6 @@ import { userAxiosInstance } from "../axiosInstance/userInstance";
 const api=userAxiosInstance
 
 
-
 export const signUpRequest=async(formData:any)=>{
     console.log('for',formData);
     

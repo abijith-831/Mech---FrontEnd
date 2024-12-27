@@ -45,6 +45,13 @@ const Navbar: React.FC = () => {
       
     }
   }
+
+
+  const handleMechSide = () =>{
+    navigate('/mech')
+  }
+
+
   return (
     <div className="navbar">
       <div className="nav-left">
@@ -52,7 +59,7 @@ const Navbar: React.FC = () => {
           <h1>LOGO</h1>
         </div>
         <div className="left-nav-items">
-          <h3>
+          <h3 onClick={handleMechSide}>
             <span>ADD WORKSHOPS / MECHANICS</span>
           </h3>
         </div>

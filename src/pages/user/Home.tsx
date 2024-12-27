@@ -1,4 +1,4 @@
-import './Home.css'
+import './styles/Home.css'
 import Card from '../../components/user/Card'
 
 const Home = () => {
@@ -10,7 +10,6 @@ const Home = () => {
           </div>
         </div>
         <div className="search-container">
-            {/* Location Section */}
             <div className="location">
                 <div className="icon-input">
                     <i className="fas fa-map-marker-alt location-icon"></i>
@@ -24,7 +23,6 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Search Field Section */}
             <div className="search-field">
                 <div className="icon-input">
                     <i className="fas fa-search search-icon"></i>
