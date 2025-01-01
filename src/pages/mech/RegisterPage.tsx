@@ -1,25 +1,30 @@
 import React, { useState } from "react"
 import { registerRequest } from "../../services/mech/mechApi";
+import { useDispatch } from "react-redux";
+import { registrationSuccess } from "../../redux/slices/mechSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 const RegisterPage = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-
+    const [isModalOpen , setIsModalOpen] = useState(false)
     const [formData , setFormData] = useState({
-        workshopname:'',
-        username:'',
-        email:'',
-        password:'',
-        phone:'',
-        shopno:'',
-        floor:'',
-        area:'',
-        city:'',
-        landmark:''
+        workshopname:'gshrh',
+        username:'abhi',
+        email:'abhijith@gmail.com',
+        password:'111',
+        phone:'3453446',
+        shopno:'2',
+        floor:'dfgd',
+        area:'gjkjk',
+        city:'sfwr',
+        landmark:'kjjhhjtutj'
     })
 
-    console.log('frrf',formData);
-    
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -36,13 +41,33 @@ const RegisterPage = () => {
         try {
             const response = await registerRequest(formData)
 
-            console.log('ress',response);
             
-        } catch (error) {
-            console.log('submission error');
+            if(response.data.success){
+              const mechData = response.data.mech;
+
+              dispatch(registrationSuccess(mechData))
+              setIsModalOpen(true);
+              
+            }
+            
+        } catch (error:any) {
+          if (error.response) {
+            console.log("Error response:", error.response.data.message);
+      
+            toast.error(error.response.data.message || "An error occurred!");
+          } else {
+            console.log("Unknown error:", error);
+            toast.error("Submission failed. Please try again later.");
+          }
             
         }
     }
+
+    const handleCloseModal = () => {
+      setIsModalOpen(false); 
+      navigate('/mech',{ state: { isRegistered: true } })
+    };
+  
 
 
   return (
@@ -223,6 +248,24 @@ const RegisterPage = () => {
                 </form>
         </div>
         </div>
+
+          {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 shadow-lg max-w-sm w-full text-center">
+            <h2 className="text-lg text-[#88c065] font-semibold mb-4">Registration Submitted</h2>
+            <p className="text-gray-600 mb-6">
+              You will be notified when the admin approves your registration.
+            </p>
+            <button
+              onClick={handleCloseModal}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   )

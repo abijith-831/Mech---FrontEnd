@@ -30,36 +30,21 @@ const userReducer=createSlice({
     reducers:{
 
         loginStart:(state)=>{
-
             state.loading=true
-
         },
         loginSuccess:(state,action)=>{
-
             state.currentUser=action.payload
-
             state.loading=false
-
             state.error=false
-
             state.isAuthenticated=true
-
         },
         loginFailure:(state,action)=>{
-
-
-
             state.loading=false
-
             state.error=action.payload
-
         },
         logout:(state)=>{
-
             state.currentUser=null
-
             state.isAuthenticated=false
-
         },
         signUpSuccess: (state, action) => {
             state.currentUser = action.payload;
@@ -67,8 +52,6 @@ const userReducer=createSlice({
             state.error = false;
             state.isAuthenticated = true;
         },
-
-
 
     }
 })

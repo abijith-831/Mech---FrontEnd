@@ -8,10 +8,18 @@ const api=axios.create({
 })
 
 export const registerRequest = async (FormData:any)=>{
-    console.log('sfsf',FormData);
     
     const response = await api.post('/register',FormData)
+    
+    return response
+    
+}
 
-    console.log('gndnn',response);
+
+export const loginRequest = async (email:string , password:string)=>{
+    
+    const response = await api.post('/login',{email , password})
+    
+    return response
     
 }
