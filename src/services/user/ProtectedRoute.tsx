@@ -11,7 +11,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
   const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated);
   console.log(isAuthenticated,'jjj  ')
 
-  // Redirect to /signup if not authenticated
   return isAuthenticated ? element : <Navigate to="/signup" />;
 };
 

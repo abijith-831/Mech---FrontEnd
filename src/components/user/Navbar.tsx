@@ -3,7 +3,6 @@ import { useDispatch, useSelector} from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigate  } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import profile from '../../assets/user/say my name.jpg';
 import './styles/navbar.css';
 import { userLogout } from '../../services/user/userApi';
 import { logout } from '../../redux/slices/userSlice';
@@ -13,7 +12,9 @@ const Navbar: React.FC = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { currentUser } = useSelector((state: RootState) => state.user);
+
   
+   
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -28,6 +29,10 @@ const Navbar: React.FC = () => {
   const handleLoginClick = () => {
     navigate('/login');
   };
+
+  const handleProfileClick = ()=>{
+    navigate('/profile')
+  }
 
 
   const toggleDropdown = () => {
@@ -65,21 +70,32 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       <div className="nav-right">
-        {currentUser ? (
+      {currentUser ? (
           <div className="profile-section">
-            <h4>{currentUser.username}</h4>
+            <h4 onClick={handleProfileClick} className="cursor-pointer">
+              {currentUser.username}
+            </h4>
             <div className="profile-dropdown">
               <img
-                src={profile}
                 alt="Profile"
                 className="profile-image"
-                style={{ width: '30px', height: '30px', borderRadius: '50%' }}
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  marginLeft: '20px',
+                  borderRadius: '50%',
+                }}
+                src={
+                  currentUser.image
+                    ? currentUser.image
+                    : 'https://source.unsplash.com/random/30x30'
+                }
                 onClick={toggleDropdown}
               />
               {isDropdownOpen && (
                 <div className="dropdown-menu open">
                   <ul>
-                    <li>Profile</li>
+                    <li onClick={handleProfileClick}>Profile</li>
                     <li>
                       <button onClick={handleLogout}>Logout</button>
                     </li>

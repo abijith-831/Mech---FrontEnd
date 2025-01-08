@@ -242,7 +242,7 @@
     transition: all 0.3s ease-in-out;
 }
 .service-btns:hover{
-    background-color: rgb(13, 182, 63);
+   background-color: #88c065;
     color: white;
     
 }

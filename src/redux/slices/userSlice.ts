@@ -8,15 +8,27 @@ const initialState: UserState={
     isAuthenticated : false
 }
 
+interface IAddress {
+    _id: string;
+    area: string;
+    village: string;
+    landmark: string;
+    city: string;
+    pincode: string;
+}
+
 interface User{
     data : User | null;
-    _id : string ; 
+    userId : string ; 
     username : string ; 
     email : string
+    phone?:string;
+    image?: string;
+    addresses?: IAddress[];
 }
 
 interface UserState{
-    currentUser : User | null;
+    currentUser : User  | null;
     loading : boolean ;
     error : boolean;
     isAuthenticated : boolean
@@ -32,11 +44,17 @@ const userReducer=createSlice({
         loginStart:(state)=>{
             state.loading=true
         },
-        loginSuccess:(state,action)=>{
-            state.currentUser=action.payload
-            state.loading=false
-            state.error=false
-            state.isAuthenticated=true
+        loginSuccess: (state, action) => {
+            console.log('Action Payload:', action.payload)
+            const imageUrl = `http://localhost:3000/${action.payload.image}`
+            state.currentUser = {
+              ...action.payload,
+              userId: action.payload._id,
+              image: imageUrl || 'https://via.placeholder.com/150', 
+            };
+            state.loading = false;
+            state.error = false;
+            state.isAuthenticated = true;
         },
         loginFailure:(state,action)=>{
             state.loading=false
@@ -52,7 +70,33 @@ const userReducer=createSlice({
             state.error = false;
             state.isAuthenticated = true;
         },
-
+        updateUserImage: (state, action) => {
+            if (state.currentUser) {
+              state.currentUser.image = action.payload;
+            }
+        },
+        removeUserImage: (state) => {
+            if (state.currentUser) {
+              state.currentUser.image = undefined; 
+            }
+        },
+        updateUserName: (state, action) => {
+            if (state.currentUser) {
+              state.currentUser.username = action.payload; 
+            }
+        },
+        addPhoneNumber: (state, action) => {
+            if (state.currentUser) {
+              state.currentUser.phone = action.payload; 
+            }
+        },
+        addAddresss: (state, action) => {           
+            if (state.currentUser) {
+              state.currentUser.addresses = state.currentUser.addresses || [];
+              state.currentUser.addresses.push(action.payload); 
+            }
+          },
+          
     }
 })
 
@@ -61,6 +105,13 @@ export const {loginStart,
     loginFailure,
     loginSuccess,
     logout,
-    signUpSuccess} = userReducer.actions;
+    signUpSuccess,
+    updateUserImage ,
+    removeUserImage ,
+    updateUserName ,
+    addPhoneNumber,
+    addAddresss,
+} = userReducer.actions;
+
 
 export default userReducer.reducer
